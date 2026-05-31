@@ -1442,53 +1442,187 @@
     </div>
   </div>
  
-  <!-- ── MODALES ── -->
+<!-- ── MODALES ── -->
   <div class="modal-overlay" id="modalIngreso">
     <div class="modal-sheet">
       <div class="modal-handle"></div>
       <div class="modal-title">Registrar ingreso</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-bottom:0.5rem;font-weight:600;text-transform:uppercase;letter-spacing:0.7px">Tipo de ingreso</div>
-      <div class="tipo-selector">
-        <div class="tipo-btn active" onclick="selectTipo(this)">Venta</div>
-        <div class="tipo-btn" onclick="selectTipo(this)">Cheque</div>
-        <div class="tipo-btn" onclick="selectTipo(this)">Factoring</div>
-        <div class="tipo-btn" onclick="selectTipo(this)">Crédito</div>
+      <div class="form-label" style="margin-bottom:0.5rem">Tipo de ingreso</div>
+      <div class="tipo-selector" style="grid-template-columns:repeat(4,1fr)">
+        <div class="tipo-btn active" onclick="selectTipoIngreso(this,'venta')">Venta</div>
+        <div class="tipo-btn" onclick="selectTipoIngreso(this,'cheque')">Cheque</div>
+        <div class="tipo-btn" onclick="selectTipoIngreso(this,'factoring')">Factoring</div>
+        <div class="tipo-btn" onclick="selectTipoIngreso(this,'credito')">Crédito</div>
       </div>
-      <div class="form-group">
-        <label class="form-label">N° Factura / Boleta</label>
-        <input class="form-input" type="text" placeholder="F001-0000">
-      </div>
-      <div class="form-group">
-        <label class="form-label">RUC del cliente</label>
-        <input class="form-input" type="text" placeholder="20xxxxxxxxx">
-      </div>
-      <div class="form-row">
+
+      <!-- VENTA (RF-01) -->
+      <div id="campos-venta">
         <div class="form-group">
-          <label class="form-label">Monto</label>
-          <input class="form-input" type="number" placeholder="0.00">
+          <label class="form-label">N° Factura / Boleta</label>
+          <input class="form-input" type="text" placeholder="F001-0000">
         </div>
         <div class="form-group">
-          <label class="form-label">Moneda</label>
-          <select class="form-select"><option>USD ($)</option><option>PEN (S/.)</option></select>
+          <label class="form-label">RUC del cliente</label>
+          <input class="form-input" type="text" placeholder="20xxxxxxxxx">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Monto</label>
+            <input class="form-input" type="number" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Moneda</label>
+            <select class="form-select"><option>USD ($)</option><option>PEN (S/.)</option></select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Tipo de cambio</label>
+            <input class="form-input" type="number" placeholder="3.75">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Fecha</label>
+            <input class="form-input" type="date">
+          </div>
         </div>
       </div>
-      <div class="form-row">
+
+      <!-- CHEQUE (RF-02) -->
+      <div id="campos-cheque" style="display:none">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">N° Correlativo</label>
+            <input class="form-input" type="text" placeholder="00144">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Banco emisor</label>
+            <select class="form-select">
+              <option>BCP</option><option>BBVA</option>
+              <option>Scotiabank</option><option>Interbank</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Librador</label>
+          <input class="form-input" type="text" placeholder="Nombre o empresa">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Monto</label>
+            <input class="form-input" type="number" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Moneda</label>
+            <select class="form-select"><option>USD ($)</option><option>PEN (S/.)</option></select>
+          </div>
+        </div>
         <div class="form-group">
           <label class="form-label">Tipo de cambio</label>
           <input class="form-input" type="number" placeholder="3.75">
         </div>
-        <div class="form-group">
-          <label class="form-label">Fecha</label>
-          <input class="form-input" type="date">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Fecha de emisión</label>
+            <input class="form-input" type="date">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Fecha de recepción</label>
+            <input class="form-input" type="date">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Fecha de cobro</label>
+            <input class="form-input" type="date">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Estado</label>
+            <select class="form-select">
+              <option>Pendiente</option><option>Cobrado</option><option>Anulado</option>
+            </select>
+          </div>
         </div>
       </div>
+
+      <!-- FACTORING (RF-03) -->
+      <div id="campos-factoring" style="display:none">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">ID Contrato</label>
+            <input class="form-input" type="text" placeholder="FC-0000">
+          </div>
+          <div class="form-group">
+            <label class="form-label">ID Factor</label>
+            <input class="form-input" type="text" placeholder="FAC-000">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">ID Factura asociada</label>
+          <input class="form-input" type="text" placeholder="F001-0000">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Monto</label>
+            <input class="form-input" type="number" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Moneda</label>
+            <select class="form-select"><option>USD ($)</option><option>PEN (S/.)</option></select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Tipo de cambio</label>
+            <input class="form-input" type="number" placeholder="3.75">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Fecha de operación</label>
+            <input class="form-input" type="date">
+          </div>
+        </div>
+      </div>
+
+      <!-- CRÉDITO (RF-04) -->
+      <div id="campos-credito" style="display:none">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">ID Crédito</label>
+            <input class="form-input" type="text" placeholder="CR-0000">
+          </div>
+          <div class="form-group">
+            <label class="form-label">ID Acreedor</label>
+            <input class="form-input" type="text" placeholder="ACR-000">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Monto</label>
+            <input class="form-input" type="number" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Moneda</label>
+            <select class="form-select"><option>USD ($)</option><option>PEN (S/.)</option></select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Tipo de cambio</label>
+            <input class="form-input" type="number" placeholder="3.75">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Fecha de desembolso</label>
+            <input class="form-input" type="date">
+          </div>
+        </div>
+      </div>
+
       <div class="form-actions">
         <button class="btn-cancel" onclick="closeModal('modalIngreso')">Cancelar</button>
         <button class="btn-save" onclick="saveForm('modalIngreso')">Guardar ingreso</button>
       </div>
     </div>
   </div>
- 
+  
   <div class="modal-overlay" id="modalGasto">
     <div class="modal-sheet">
       <div class="modal-handle"></div>
@@ -1673,6 +1807,14 @@
   function selectTipo(el) {
     el.closest('.tipo-selector').querySelectorAll('.tipo-btn').forEach(b => b.classList.remove('active'));
     el.classList.add('active');
+  }
+  function selectTipoIngreso(el, tipo) {
+    el.closest('.tipo-selector').querySelectorAll('.tipo-btn')
+      .forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    ['venta','cheque','factoring','credito'].forEach(t => {
+      document.getElementById('campos-' + t).style.display = t === tipo ? 'block' : 'none';
+    });
   }
  
   function setFilter(el) {
