@@ -998,12 +998,23 @@
         </button>
       </div>
 
+      <div style="display:flex; gap:0.5rem; margin-bottom:0.75rem">
+        <div class="form-group" style="flex:1;margin-bottom:0">
+          <label class="form-label">Desde</label>
+          <input class="form-input" type="date" id="ing-desde" onchange="filtrarIngresos()">
+        </div>
+        <div class="form-group" style="flex:1;margin-bottom:0">
+          <label class="form-label">Hasta</label>
+          <input class="form-input" type="date" id="ing-hasta" onchange="filtrarIngresos()">
+        </div>
+      </div>
+      
       <div class="filter-tabs">
-        <div class="filter-tab active" onclick="setFilter(this)">Todos</div>
-        <div class="filter-tab" onclick="setFilter(this)">Venta</div>
-        <div class="filter-tab" onclick="setFilter(this)">Cheque</div>
-        <div class="filter-tab" onclick="setFilter(this)">Factoring</div>
-        <div class="filter-tab" onclick="setFilter(this)">Crédito</div>
+        <div class="filter-tab active" onclick="setFilter(this); filtrarIngresos()">Todos</div>
+        <div class="filter-tab" onclick="setFilter(this); filtrarIngresos()">Venta</div>
+        <div class="filter-tab" onclick="setFilter(this); filtrarIngresos()">Cheque</div>
+        <div class="filter-tab" onclick="setFilter(this); filtrarIngresos()">Factoring</div>
+        <div class="filter-tab" onclick="setFilter(this); filtrarIngresos()">Crédito</div>
       </div>
 
       <div class="tx-list">
@@ -1957,6 +1968,32 @@
   }
 
   drawChart('S');
+  
+function filtrarIngresos() {
+  const desde = document.getElementById('ing-desde').value;
+  const hasta = document.getElementById('ing-hasta').value;
+  const tipoActivo = document.querySelector('#screen-ingresos .filter-tab.active').textContent.trim();
+
+  document.querySelectorAll('#screen-ingresos .tx-item').forEach(item => {
+    const meta = item.querySelector('.tx-meta').textContent;
+    const fechaTexto = meta.match(/\d{2}\/\d{2}\/\d{4}/);
+    let mostrar = true;
+
+    if (fechaTexto) {
+      const partes = fechaTexto[0].split('/');
+      const fecha = `${partes[2]}-${partes[1]}-${partes[0]}`;
+      if (desde && fecha < desde) mostrar = false;
+      if (hasta && fecha > hasta) mostrar = false;
+    }
+
+    if (tipoActivo !== 'Todos') {
+      const tipo = item.querySelector('.tx-meta').textContent.toLowerCase();
+      if (!tipo.includes(tipoActivo.toLowerCase())) mostrar = false;
+    }
+
+    item.style.display = mostrar ? 'flex' : 'none';
+  });
+}
 </script>
 </body>
 </html>
