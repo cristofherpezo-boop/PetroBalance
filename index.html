@@ -998,16 +998,6 @@
         </button>
       </div>
 
-      <div style="display:flex; gap:0.5rem; margin-bottom:0.75rem">
-        <div class="form-group" style="flex:1;margin-bottom:0">
-          <label class="form-label">Desde</label>
-          <input class="form-input" type="date" id="ing-desde" onchange="filtrarIngresos()">
-        </div>
-        <div class="form-group" style="flex:1;margin-bottom:0">
-          <label class="form-label">Hasta</label>
-          <input class="form-input" type="date" id="ing-hasta" onchange="filtrarIngresos()">
-        </div>
-      </div>
       
       <div class="filter-tabs">
         <div class="filter-tab active" onclick="setFilter(this); filtrarIngresos()">Todos</div>
@@ -1945,11 +1935,6 @@
 
   drawChart('S');
   
-function filtrarIngresos() {
-  const desde = document.getElementById('ing-desde').value;
-  const hasta = document.getElementById('ing-hasta').value;
-  const tipoActivo = document.querySelector('#screen-ingresos .filter-tab.active').textContent.trim();
-
   document.querySelectorAll('#screen-ingresos .tx-item').forEach(item => {
     const meta = item.querySelector('.tx-meta').textContent;
     const fechaTexto = meta.match(/\d{2}\/\d{2}\/\d{4}/);
