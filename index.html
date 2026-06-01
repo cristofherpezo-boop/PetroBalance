@@ -1673,54 +1673,212 @@
     <div class="modal-sheet">
       <div class="modal-handle"></div>
       <div class="modal-title">Registrar gasto</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-bottom:0.5rem;font-weight:600;text-transform:uppercase;letter-spacing:0.7px">Tipo de documento</div>
-      <div class="tipo-selector" style="grid-template-columns:1fr 1fr 1fr">
-        <div class="tipo-btn active" onclick="selectTipo(this)">Factura</div>
-        <div class="tipo-btn" onclick="selectTipo(this)">Boleta</div>
-        <div class="tipo-btn" onclick="selectTipo(this)">Sin comprobante</div>
+      <div class="form-label" style="margin-bottom:0.5rem">Tipo de gasto</div>
+      <div class="tipo-selector" style="grid-template-columns:repeat(5,1fr)">
+        <div class="tipo-btn active" onclick="selectTipoGasto(this,'factura')">Factura</div>
+        <div class="tipo-btn" onclick="selectTipoGasto(this,'boleta')">Boleta</div>
+        <div class="tipo-btn" onclick="selectTipoGasto(this,'corriente')">Cta. Corriente</div>
+        <div class="tipo-btn" onclick="selectTipoGasto(this,'cheque')">Cheque</div>
+        <div class="tipo-btn" onclick="selectTipoGasto(this,'financiero')">Financiero</div>
       </div>
-      <div class="form-group">
-        <label class="form-label">N° Documento</label>
-        <input class="form-input" type="text" placeholder="F002-0000">
-      </div>
-      <div class="form-row">
+
+      <!-- FACTURA (RF-05) -->
+      <div id="gcampos-factura">
         <div class="form-group">
-          <label class="form-label">RUC Proveedor</label>
-          <input class="form-input" type="text" placeholder="20xxxxxxxxx">
+          <label class="form-label">N° Factura</label>
+          <input class="form-input" type="text" placeholder="F002-0000">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">RUC Proveedor</label>
+            <input class="form-input" type="text" placeholder="20xxxxxxxxx">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Razón social</label>
+            <input class="form-input" type="text" placeholder="Empresa S.A.C.">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Monto</label>
+            <input class="form-input" type="number" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Moneda</label>
+            <select class="form-select"><option>USD ($)</option><option>PEN (S/.)</option></select>
+          </div>
         </div>
         <div class="form-group">
-          <label class="form-label">Razón social</label>
-          <input class="form-input" type="text" placeholder="Empresa S.A.C.">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Monto</label>
-          <input class="form-input" type="number" placeholder="0.00">
+          <label class="form-label">Categoría de pago</label>
+          <select class="form-select">
+            <option>Materiales</option><option>Transporte</option>
+            <option>Alimentación</option><option>Servicios</option><option>Otros</option>
+          </select>
         </div>
         <div class="form-group">
-          <label class="form-label">Moneda</label>
-          <select class="form-select"><option>USD ($)</option><option>PEN (S/.)</option></select>
+          <label class="form-label">Fecha de pago</label>
+          <input class="form-input" type="date">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Comprobante (imagen)</label>
+          <div class="upload-area">
+            <div class="upload-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></div>
+            Subir foto o captura YAPE/PLIN
+          </div>
         </div>
       </div>
-      <div class="form-group">
-        <label class="form-label">Categoría de pago</label>
-        <select class="form-select">
-          <option>Materiales</option><option>Transporte</option>
-          <option>Alimentación</option><option>Servicios</option><option>Otros</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Fecha de pago</label>
-        <input class="form-input" type="date">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Comprobante (imagen)</label>
-        <div class="upload-area">
-          <div class="upload-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></div>
-          Subir foto de comprobante o captura YAPE/PLIN
+
+      <!-- BOLETA (RF-05) -->
+      <div id="gcampos-boleta" style="display:none">
+        <div class="form-group">
+          <label class="form-label">N° Boleta</label>
+          <input class="form-input" type="text" placeholder="B001-0000">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">RUC Proveedor</label>
+            <input class="form-input" type="text" placeholder="20xxxxxxxxx">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Razón social</label>
+            <input class="form-input" type="text" placeholder="Empresa S.A.C.">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Monto</label>
+            <input class="form-input" type="number" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Moneda</label>
+            <select class="form-select"><option>USD ($)</option><option>PEN (S/.)</option></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Categoría de pago</label>
+          <select class="form-select">
+            <option>Materiales</option><option>Transporte</option>
+            <option>Alimentación</option><option>Servicios</option><option>Otros</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Fecha de pago</label>
+          <input class="form-input" type="date">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Comprobante (imagen)</label>
+          <div class="upload-area">
+            <div class="upload-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></div>
+            Subir foto o captura YAPE/PLIN
+          </div>
         </div>
       </div>
+
+      <!-- CUENTA CORRIENTE (RF-05 sin comprobante) -->
+      <div id="gcampos-corriente" style="display:none">
+        <div class="form-group">
+          <label class="form-label">Descripción del gasto</label>
+          <input class="form-input" type="text" placeholder="Ej: Combustible campo norte">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Monto</label>
+            <input class="form-input" type="number" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Moneda</label>
+            <select class="form-select"><option>USD ($)</option><option>PEN (S/.)</option></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Categoría de pago</label>
+          <select class="form-select">
+            <option>Materiales</option><option>Transporte</option>
+            <option>Alimentación</option><option>Servicios</option><option>Otros</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Fecha de pago</label>
+          <input class="form-input" type="date">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Captura YAPE/PLIN (opcional)</label>
+          <div class="upload-area">
+            <div class="upload-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></div>
+            Subir captura (opcional)
+          </div>
+        </div>
+      </div>
+
+      <!-- CHEQUE EMITIDO (RF-08) -->
+      <div id="gcampos-cheque" style="display:none">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">N° Correlativo</label>
+            <input class="form-input" type="text" placeholder="00144">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Banco emisor</label>
+            <select class="form-select">
+              <option>BCP</option><option>BBVA</option>
+              <option>Scotiabank</option><option>Interbank</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Beneficiario</label>
+          <input class="form-input" type="text" placeholder="Nombre o empresa">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Monto</label>
+            <input class="form-input" type="number" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Moneda</label>
+            <select class="form-select"><option>USD ($)</option><option>PEN (S/.)</option></select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Fecha de emisión</label>
+            <input class="form-input" type="date">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Fecha de cobro</label>
+            <input class="form-input" type="date">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Estado</label>
+          <select class="form-select">
+            <option>Pendiente</option><option>Cobrado</option><option>Anulado</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- GASTO FINANCIERO (RF-07) -->
+      <div id="gcampos-financiero" style="display:none">
+        <div class="form-group">
+          <label class="form-label">ID Crédito</label>
+          <input class="form-input" type="text" placeholder="CR-0000">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Monto</label>
+            <input class="form-input" type="number" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Moneda</label>
+            <select class="form-select"><option>USD ($)</option><option>PEN (S/.)</option></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Fecha de pago</label>
+          <input class="form-input" type="date">
+        </div>
+      </div>
+
       <div class="form-actions">
         <button class="btn-cancel" onclick="closeModal('modalGasto')">Cancelar</button>
         <button class="btn-save" onclick="saveForm('modalGasto')">Guardar gasto</button>
