@@ -1648,49 +1648,6 @@
         </div>
       </div>
       
-      <div class="modal-overlay" id="modalBanco">
-        <div class="modal-sheet">
-          <div class="modal-handle"></div>
-          <div class="modal-title" id="modal-banco-titulo">Registrar banco</div>
-          <input type="hidden" id="banco-edit-index" value="-1">
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Nombre del banco</label>
-              <input class="form-input" type="text" id="banco-nombre" placeholder="Ej: BCP">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Moneda</label>
-              <select class="form-select" id="banco-moneda">
-                <option value="USD">USD ($)</option>
-                <option value="PEN">PEN (S/.)</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">N° de cuenta</label>
-              <input class="form-input" type="text" id="banco-cuenta" placeholder="000-000000-0-00">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Tipo de cuenta</label>
-              <select class="form-select" id="banco-tipo">
-                <option>Cta. Corriente</option>
-                <option>Cta. Ahorros</option>
-                <option>Cta. Detracciones</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Descripción (opcional)</label>
-            <input class="form-input" type="text" id="banco-descripcion" placeholder="Ej: Cuenta principal de pagos">
-          </div>
-          <div class="form-actions">
-            <button class="btn-cancel" onclick="cerrarModalBanco()">Cancelar</button>
-            <button class="btn-save" onclick="guardarBanco()">Guardar banco</button>
-          </div>
-        </div>
-      </div> 
-      
       <!-- CRÉDITO (RF-04) -->
       <div id="campos-credito" style="display:none">
         <div class="form-row">
@@ -1731,6 +1688,48 @@
       </div>
     </div>
   </div>
+<div class="modal-overlay" id="modalBanco">
+      <div class="modal-sheet">
+        <div class="modal-handle"></div>
+        <div class="modal-title" id="modal-banco-titulo">Registrar banco</div>
+        <input type="hidden" id="banco-edit-index" value="-1">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Nombre del banco</label>
+            <input class="form-input" type="text" id="banco-nombre" placeholder="Ej: BCP">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Moneda</label>
+            <select class="form-select" id="banco-moneda">
+              <option value="USD">USD ($)</option>
+              <option value="PEN">PEN (S/.)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">N° de cuenta</label>
+            <input class="form-input" type="text" id="banco-cuenta" placeholder="000-000000-0-00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tipo de cuenta</label>
+            <select class="form-select" id="banco-tipo">
+              <option>Cta. Corriente</option>
+              <option>Cta. Ahorros</option>
+              <option>Cta. Detracciones</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Descripción (opcional)</label>
+          <input class="form-input" type="text" id="banco-descripcion" placeholder="Ej: Cuenta principal de pagos">
+        </div>
+        <div class="form-actions">
+          <button class="btn-cancel" onclick="cerrarModalBanco()">Cancelar</button>
+          <button class="btn-save" onclick="guardarBanco()">Guardar banco</button>
+        </div>
+      </div>
+    </div> 
   
   <div class="modal-overlay" id="modalGasto">
     <div class="modal-sheet">
