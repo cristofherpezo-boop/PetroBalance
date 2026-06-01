@@ -2046,6 +2046,15 @@
     el.closest('.filter-tabs').querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
     el.classList.add('active');
   }
+  
+  function selectTipoGasto(el, tipo) {
+    el.closest('.tipo-selector').querySelectorAll('.tipo-btn')
+      .forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    ['factura','boleta','corriente','cheque','financiero'].forEach(t => {
+      document.getElementById('gcampos-' + t).style.display = t === tipo ? 'block' : 'none';
+    });
+  }
  
   function setPeriod(el, period) {
     el.closest('.period-tabs').querySelectorAll('.period-tab').forEach(t => t.classList.remove('active'));
