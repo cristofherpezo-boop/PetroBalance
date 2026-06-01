@@ -1486,6 +1486,26 @@
         </button>
       </div>
     </div>
+    <!-- ── GESTIÓN DE BANCOS ── -->
+<div class="cuenta-item">
+  <div class="section-header" style="margin-bottom:0.5rem">
+    <div>
+      <div class="cuenta-name">Cuentas bancarias</div>
+      <div class="cuenta-meta">Bancos disponibles para cheques y pagos</div>
+    </div>
+    <button class="btn-add" onclick="openModal('modalBanco')">
+      <svg class="icon" style="width:14px;height:14px" viewBox="0 0 24 24">
+        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+      Nuevo
+    </button>
+  </div>
+  <div id="banco-lista" style="display:flex;flex-direction:column;gap:0.5rem;margin:0.65rem 0"></div>
+  <div class="total-bar" style="margin-top:0.5rem">
+    <span class="total-bar-label">BANCOS REGISTRADOS</span>
+    <span class="total-bar-value" id="banco-count">0 bancos</span>
+  </div>
+</div>
   </div>
  
 <!-- ── MODALES ── -->
@@ -1627,7 +1647,50 @@
           </div>
         </div>
       </div>
-
+      
+      <div class="modal-overlay" id="modalBanco">
+        <div class="modal-sheet">
+          <div class="modal-handle"></div>
+          <div class="modal-title" id="modal-banco-titulo">Registrar banco</div>
+          <input type="hidden" id="banco-edit-index" value="-1">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Nombre del banco</label>
+              <input class="form-input" type="text" id="banco-nombre" placeholder="Ej: BCP">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Moneda</label>
+              <select class="form-select" id="banco-moneda">
+                <option value="USD">USD ($)</option>
+                <option value="PEN">PEN (S/.)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">N° de cuenta</label>
+              <input class="form-input" type="text" id="banco-cuenta" placeholder="000-000000-0-00">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tipo de cuenta</label>
+              <select class="form-select" id="banco-tipo">
+                <option>Cta. Corriente</option>
+                <option>Cta. Ahorros</option>
+                <option>Cta. Detracciones</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Descripción (opcional)</label>
+            <input class="form-input" type="text" id="banco-descripcion" placeholder="Ej: Cuenta principal de pagos">
+          </div>
+          <div class="form-actions">
+            <button class="btn-cancel" onclick="cerrarModalBanco()">Cancelar</button>
+            <button class="btn-save" onclick="guardarBanco()">Guardar banco</button>
+          </div>
+        </div>
+      </div> 
+      
       <!-- CRÉDITO (RF-04) -->
       <div id="campos-credito" style="display:none">
         <div class="form-row">
@@ -2084,6 +2147,94 @@
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
   }
+
+    // ── GESTIÓN DE BANCOS ──
+  let bancos = [
+    { nombre: 'BCP',       moneda: 'USD', cuenta: '****-7823', tipo: 'Cta. Corriente', desc: '' },
+    { nombre: 'BBVA',      moneda: 'PEN', cuenta: '****-4510', tipo: 'Cta. Corriente', desc: '' },
+    { nombre: 'Scotiabank',moneda: 'USD', cuenta: '****-1194', tipo: 'Cta. Corriente', desc: '' }
+  ];
+  
+  function renderBancos() {
+    const lista = document.getElementById('banco-lista');
+    document.getElementById('banco-count').textContent = bancos.length + ' banco' + (bancos.length !== 1 ? 's' : '');
+    if (!bancos.length) {
+      lista.innerHTML = '<div style="font-size:12px;color:var(--text-muted);text-align:center;padding:0.75rem 0">Sin bancos registrados</div>';
+      return;
+    }
+    lista.innerHTML = bancos.map((b, i) => `
+      <div style="background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:8px;padding:0.65rem 0.9rem;display:flex;align-items:center;gap:0.75rem">
+        <div style="width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;letter-spacing:-0.5px">
+          ${b.nombre.substring(0,4).toUpperCase()}
+        </div>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${b.nombre}</div>
+          <div style="font-size:11px;color:var(--text-muted);font-family:'DM Mono',monospace">${b.tipo} · ${b.cuenta}</div>
+        </div>
+        <span style="font-size:10px;color:var(--text-muted);background:rgba(255,255,255,0.1);border-radius:6px;padding:2px 7px;flex-shrink:0">${b.moneda}</span>
+        <div style="display:flex;gap:0.35rem;flex-shrink:0">
+          <button onclick="editarBanco(${i})" style="background:rgba(255,255,255,0.08);border:1px solid var(--border);border-radius:7px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-muted)" title="Editar">
+            <svg style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
+          <button onclick="eliminarBanco(${i})" style="background:rgba(220,53,69,0.1);border:1px solid rgba(220,53,69,0.25);border-radius:7px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#ff7070" title="Eliminar">
+            <svg style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+          </button>
+        </div>
+      </div>
+    `).join('');
+  }
+  
+  function guardarBanco() {
+    const nombre = document.getElementById('banco-nombre').value.trim();
+    const cuenta = document.getElementById('banco-cuenta').value.trim();
+    if (!nombre || !cuenta) { showToast('Completa nombre y número de cuenta', 'warning', 'info'); return; }
+    const nuevo = {
+      nombre,
+      moneda: document.getElementById('banco-moneda').value,
+      cuenta,
+      tipo: document.getElementById('banco-tipo').value,
+      desc: document.getElementById('banco-descripcion').value.trim()
+    };
+    const idx = parseInt(document.getElementById('banco-edit-index').value);
+    if (idx >= 0) {
+      bancos[idx] = nuevo;
+      showToast('Banco actualizado', 'success', 'check');
+    } else {
+      bancos.push(nuevo);
+      showToast('Banco registrado', 'success', 'check');
+    }
+    renderBancos();
+    cerrarModalBanco();
+  }
+  
+  function editarBanco(i) {
+    const b = bancos[i];
+    document.getElementById('modal-banco-titulo').textContent = 'Editar banco';
+    document.getElementById('banco-edit-index').value = i;
+    document.getElementById('banco-nombre').value = b.nombre;
+    document.getElementById('banco-moneda').value = b.moneda;
+    document.getElementById('banco-cuenta').value = b.cuenta;
+    document.getElementById('banco-tipo').value = b.tipo;
+    document.getElementById('banco-descripcion').value = b.desc;
+    openModal('modalBanco');
+  }
+  
+  function eliminarBanco(i) {
+    bancos.splice(i, 1);
+    renderBancos();
+    showToast('Banco eliminado', 'warning', 'info');
+  }
+  
+  function cerrarModalBanco() {
+    document.getElementById('modal-banco-titulo').textContent = 'Registrar banco';
+    document.getElementById('banco-edit-index').value = -1;
+    ['banco-nombre','banco-cuenta','banco-descripcion'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('banco-moneda').value = 'USD';
+    document.getElementById('banco-tipo').value = 'Cta. Corriente';
+    closeModal('modalBanco');
+  }
+  
+  renderBancos();
  
   function drawChart(period) {
     const svg = document.querySelector('.chart-svg');
