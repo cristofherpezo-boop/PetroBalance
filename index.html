@@ -1129,7 +1129,7 @@
     </nav>
   </div>
 
-  <!-- ── REGISTROS ── -->
+<!-- ── REGISTROS ── -->
   <div class="screen" id="screen-registros">
     <div class="topbar">
       <button class="back-btn" onclick="goTo('home')">
@@ -1214,7 +1214,158 @@
           </div>
           <div class="tx-amount neg">-S/. 180.00</div>
         </div>
-        <div class="tx-item reg-i
+        <div class="tx-item reg-item reg-egresos reg-cheques">
+          <div class="tx-icon red"><svg class="icon" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div class="tx-info">
+            <div class="tx-name">Cheque N° 00078 — Scotiabank</div>
+            <div class="tx-meta">Cheque emitido · 25/05/2026</div>
+          </div>
+          <div class="tx-amount neg">-$500.00</div>
+        </div>
+        <div class="tx-item reg-item reg-egresos">
+          <div class="tx-icon red"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+          <div class="tx-info">
+            <div class="tx-name">Pago cuota BBVA — CR-0012</div>
+            <div class="tx-meta">Gasto financiero · 20/05/2026</div>
+          </div>
+          <div class="tx-amount neg">-S/. 450.00</div>
+        </div>
+      </div>
+      <div class="total-bar" id="registros-total">
+        <span class="total-bar-label">TOTAL</span>
+        <span class="total-bar-value" style="color:#5be87c" id="registros-total-val">Ver por filtro</span>
+      </div>
+      <div style="margin-top:0.75rem">
+        <div style="font-size:11px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:0.5rem">Formato de exportación</div>
+        <div class="tipo-selector" style="grid-template-columns:1fr 1fr 1fr;margin-bottom:0.75rem">
+          <div class="tipo-btn active" id="fmt-xlsx" onclick="selectFormato('xlsx')">XLSX</div>
+          <div class="tipo-btn" id="fmt-xml" onclick="selectFormato('xml')">XML</div>
+          <div class="tipo-btn" id="fmt-csv" onclick="selectFormato('csv')">CSV</div>
+        </div>
+        <button class="btn-save" style="width:100%;border-radius:var(--radius-sm)" onclick="exportarRegistros()">
+          Exportar
+        </button>
+      </div>
+    </div>
+    <nav class="bottom-nav">
+      <button class="nav-btn" onclick="goTo('home')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Inicio
+      </button>
+      <button class="nav-btn" onclick="goTo('ingresos')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 5 5 12"/></svg>
+        Ingresos
+      </button>
+      <button class="nav-btn" onclick="goTo('gastos')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 19 19 12"/></svg>
+        Gastos
+      </button>
+      <button class="nav-btn" onclick="goTo('cuentas')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Cuentas
+      </button>
+    </nav>
+  </div>
+
+  <!-- ── CUENTAS ── -->
+  <div class="screen" id="screen-cuentas">
+    <div class="topbar">
+      <button class="back-btn" onclick="goTo('home')">
+        <svg class="icon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Volver
+      </button>
+      <span class="topbar-title">Cuentas pendientes</span>
+      <div style="width:60px"></div>
+    </div>
+    <div class="module-screen">
+      <div class="stats-row" style="margin-top:0.5rem">
+        <div class="stat-mini">
+          <div class="stat-mini-val" style="color:#5be87c">1</div>
+          <div class="stat-mini-lbl">Pagadas</div>
+        </div>
+        <div class="stat-mini">
+          <div class="stat-mini-val" style="color:#ffd166">2</div>
+          <div class="stat-mini-lbl">Pendientes</div>
+        </div>
+        <div class="stat-mini">
+          <div class="stat-mini-val" style="color:#ff7070">1</div>
+          <div class="stat-mini-lbl">Retrasadas</div>
+        </div>
+      </div>
+      <div class="filter-tabs" style="margin-top:0.5rem">
+        <div class="filter-tab active" onclick="setFilter(this)">Todas</div>
+        <div class="filter-tab" onclick="setFilter(this)">Pagado</div>
+        <div class="filter-tab" onclick="setFilter(this)">Pendiente</div>
+        <div class="filter-tab" onclick="setFilter(this)">Retrasado</div>
+      </div>
+      <div class="cuenta-item">
+        <div class="cuenta-header">
+          <span class="cuenta-name">Crédito BBVA — CR-0012</span>
+          <span class="status-badge pendiente">Pendiente</span>
+        </div>
+        <div class="cuenta-meta">Vence: 15/06/2026 · Cuota mensual</div>
+        <div class="cuenta-progress"><div class="cuenta-progress-bar" style="width:40%;background:#ffc107"></div></div>
+        <div class="cuenta-footer">
+          <span class="cuenta-amount" style="color:#ffd166">S/. 3,150.00 restante</span>
+          <button class="btn-add" onclick="showToast('Abono registrado','success','check')" style="padding:0.3rem 0.7rem;font-size:12px">Abonar</button>
+        </div>
+      </div>
+      <div class="cuenta-item">
+        <div class="cuenta-header">
+          <span class="cuenta-name">Cheque #00143 — Energía S.A.</span>
+          <span class="status-badge pendiente">Pendiente</span>
+        </div>
+        <div class="cuenta-meta">Emisión: 15/05/2026 · Por cobrar</div>
+        <div class="cuenta-progress"><div class="cuenta-progress-bar" style="width:0%;background:#ffc107"></div></div>
+        <div class="cuenta-footer">
+          <span class="cuenta-amount" style="color:#ffd166">$750.00 pendiente</span>
+          <button class="btn-add" onclick="showToast('Estado actualizado','success','check')" style="padding:0.3rem 0.7rem;font-size:12px">Actualizar</button>
+        </div>
+      </div>
+      <div class="cuenta-item">
+        <div class="cuenta-header">
+          <span class="cuenta-name">Proveedor Martinez — Factura</span>
+          <span class="status-badge retrasado">Retrasado</span>
+        </div>
+        <div class="cuenta-meta">Venció: 01/05/2026 · 30 días de retraso</div>
+        <div class="cuenta-progress"><div class="cuenta-progress-bar" style="width:100%;background:#dc3545"></div></div>
+        <div class="cuenta-footer">
+          <span class="cuenta-amount" style="color:#ff7070">$220.00 vencido</span>
+          <button class="btn-add" onclick="showToast('Abono registrado','success','check')" style="padding:0.3rem 0.7rem;font-size:12px">Abonar</button>
+        </div>
+      </div>
+      <div class="cuenta-item">
+        <div class="cuenta-header">
+          <span class="cuenta-name">Olympic — Factura F001-2298</span>
+          <span class="status-badge pagado">Pagado</span>
+        </div>
+        <div class="cuenta-meta">Pagado: 22/05/2026 · Completo</div>
+        <div class="cuenta-progress"><div class="cuenta-progress-bar" style="width:100%;background:#28a745"></div></div>
+        <div class="cuenta-footer">
+          <span class="cuenta-amount" style="color:#5be87c">S/. 1,200.00 cobrado</span>
+          <span style="font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:4px">Completado <svg class="icon" style="width:12px;height:12px" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+        </div>
+      </div>
+    </div>
+    <nav class="bottom-nav">
+      <button class="nav-btn" onclick="goTo('home')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Inicio
+      </button>
+      <button class="nav-btn" onclick="goTo('ingresos')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 5 5 12"/></svg>
+        Ingresos
+      </button>
+      <button class="nav-btn" onclick="goTo('gastos')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 19 19 12"/></svg>
+        Gastos
+      </button>
+      <button class="nav-btn active" onclick="goTo('cuentas')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Cuentas
+      </button>
+    </nav>
+  </div>
   <!-- ── PERFIL ── -->
   <div class="screen" id="screen-perfil">
     <div class="topbar">
