@@ -1130,142 +1130,221 @@
   </div>
 
 <!-- ── REGISTROS ── -->
-  <div class="screen" id="screen-registros">
-    <div class="topbar">
-      <button class="back-btn" onclick="goTo('home')">
-        <svg class="icon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-        Volver
-      </button>
-      <span class="topbar-title">Reportes</span>
-      <div style="width:60px"></div>
-    </div>
-    <div class="module-screen">
-      <div class="filter-tabs" style="margin-top:0.75rem">
-        <div class="filter-tab active" onclick="setRegistroFiltro(this,'todos')">Todos</div>
-        <div class="filter-tab" onclick="setRegistroFiltro(this,'ingresos')">Ingresos</div>
-        <div class="filter-tab" onclick="setRegistroFiltro(this,'egresos')">Egresos</div>
-        <div class="filter-tab" onclick="setRegistroFiltro(this,'cheques')">Cheques</div>
-      </div>
-      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0.85rem 1rem;margin-bottom:0.75rem">
-        <div style="font-size:11px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:0.6rem">Rango de fechas</div>
-        <div class="form-row">
-          <div class="form-group" style="margin-bottom:0">
-            <label class="form-label">Desde</label>
-            <input class="form-input" type="date" id="fecha-desde">
-          </div>
-          <div class="form-group" style="margin-bottom:0">
-            <label class="form-label">Hasta</label>
-            <input class="form-input" type="date" id="fecha-hasta">
-          </div>
-        </div>
-        <button class="btn-save" style="width:100%;margin-top:0.65rem;border-radius:var(--radius-sm);font-size:13px" onclick="showToast('Filtro aplicado','success','check')">
-          Aplicar filtro
-        </button>
-      </div>
-      <div class="section-header">
-        <span class="section-title" id="registros-titulo">Todos los movimientos</span>
-      </div>
-      <div class="tx-list" id="registros-lista">
-        <div class="tx-item reg-item reg-ingresos">
-          <div class="tx-icon green"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
-          <div class="tx-info">
-            <div class="tx-name">Olympic — Factura F001-2341</div>
-            <div class="tx-meta">Venta · 28/05/2026</div>
-          </div>
-          <div class="tx-amount pos">+$850.00</div>
-        </div>
-        <div class="tx-item reg-item reg-ingresos">
-          <div class="tx-icon blue"><svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-          <div class="tx-info">
-            <div class="tx-name">Factoring — Contrato FC-0034</div>
-            <div class="tx-meta">Factoring · 18/05/2026</div>
-          </div>
-          <div class="tx-amount pos">+$600.00</div>
-        </div>
-        <div class="tx-item reg-item reg-ingresos reg-cheques">
-          <div class="tx-icon blue"><svg class="icon" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
-          <div class="tx-info">
-            <div class="tx-name">Cheque N° 00142 — BCP</div>
-            <div class="tx-meta">Cheque cobrado · 26/05/2026</div>
-          </div>
-          <div class="tx-amount pos">+$400.00</div>
-        </div>
-        <div class="tx-item reg-item reg-ingresos">
-          <div class="tx-icon amber"><svg class="icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
-          <div class="tx-info">
-            <div class="tx-name">Crédito BBVA — CR-0012</div>
-            <div class="tx-meta">Crédito recibido · 15/05/2026</div>
-          </div>
-          <div class="tx-amount pos">+S/. 3,500.00</div>
-        </div>
-        <div class="tx-item reg-item reg-egresos">
-          <div class="tx-icon red"><svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-          <div class="tx-info">
-            <div class="tx-name">Repuestos Talara S.A.C.</div>
-            <div class="tx-meta">Factura F002-0891 · 29/05/2026</div>
-          </div>
-          <div class="tx-amount neg">-$320.00</div>
-        </div>
-        <div class="tx-item reg-item reg-egresos">
-          <div class="tx-icon amber"><svg class="icon" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
-          <div class="tx-info">
-            <div class="tx-name">Combustible campo norte</div>
-            <div class="tx-meta">Sin comprobante · 28/05/2026</div>
-          </div>
-          <div class="tx-amount neg">-S/. 180.00</div>
-        </div>
-        <div class="tx-item reg-item reg-egresos reg-cheques">
-          <div class="tx-icon red"><svg class="icon" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
-          <div class="tx-info">
-            <div class="tx-name">Cheque N° 00078 — Scotiabank</div>
-            <div class="tx-meta">Cheque emitido · 25/05/2026</div>
-          </div>
-          <div class="tx-amount neg">-$500.00</div>
-        </div>
-        <div class="tx-item reg-item reg-egresos">
-          <div class="tx-icon red"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
-          <div class="tx-info">
-            <div class="tx-name">Pago cuota BBVA — CR-0012</div>
-            <div class="tx-meta">Gasto financiero · 20/05/2026</div>
-          </div>
-          <div class="tx-amount neg">-S/. 450.00</div>
-        </div>
-      </div>
-      <div class="total-bar" id="registros-total">
-        <span class="total-bar-label">TOTAL</span>
-        <span class="total-bar-value" style="color:#5be87c" id="registros-total-val">Ver por filtro</span>
-      </div>
-      <div style="margin-top:0.75rem">
-        <div style="font-size:11px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:0.5rem">Formato de exportación</div>
-        <div class="tipo-selector" style="grid-template-columns:1fr 1fr 1fr;margin-bottom:0.75rem">
-          <div class="tipo-btn active" id="fmt-xlsx" onclick="selectFormato('xlsx')">XLSX</div>
-          <div class="tipo-btn" id="fmt-xml" onclick="selectFormato('xml')">XML</div>
-          <div class="tipo-btn" id="fmt-csv" onclick="selectFormato('csv')">CSV</div>
-        </div>
-        <button class="btn-save" style="width:100%;border-radius:var(--radius-sm)" onclick="exportarRegistros()">
-          Exportar
-        </button>
-      </div>
-    </div>
-    <nav class="bottom-nav">
-      <button class="nav-btn" onclick="goTo('home')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        Inicio
-      </button>
-      <button class="nav-btn" onclick="goTo('ingresos')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 5 5 12"/></svg>
-        Ingresos
-      </button>
-      <button class="nav-btn" onclick="goTo('gastos')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 19 19 12"/></svg>
-        Gastos
-      </button>
-      <button class="nav-btn" onclick="goTo('cuentas')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        Cuentas
-      </button>
-    </nav>
+<div class="screen" id="screen-registros">
+  <div class="topbar">
+    <button class="back-btn" onclick="goTo('home')">
+      <svg class="icon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Volver
+    </button>
+    <span class="topbar-title">Reportes</span>
+    <div style="width:60px"></div>
   </div>
+  <div class="module-screen">
+
+    <!-- NIVEL 1 -->
+    <div style="margin-top:0.75rem">
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-muted);font-weight:600;margin-bottom:0.4rem">Tipo de movimiento</div>
+      <div class="filter-tabs" style="flex-wrap:wrap">
+        <div class="filter-tab active" onclick="rSetTipo(this,'todos')">Todos</div>
+        <div class="filter-tab" onclick="rSetTipo(this,'ingresos')">Ingresos</div>
+        <div class="filter-tab" onclick="rSetTipo(this,'gastos')">Gastos</div>
+      </div>
+    </div>
+
+    <!-- NIVEL 2: cuando es TODOS -->
+    <div id="r-sec-todos" style="margin-top:0.5rem">
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-muted);font-weight:600;margin-bottom:0.4rem">Categoría</div>
+      <div class="filter-tabs" id="r-chips-todos" style="flex-wrap:wrap;gap:0.35rem">
+        <div class="filter-tab active" onclick="rSetCat(this,'todos-all','todos')">Todas</div>
+        <div class="filter-tab" onclick="rSetCat(this,'venta','todos')" style="border-left:2px solid rgba(91,232,124,0.6)">Venta</div>
+        <div class="filter-tab" onclick="rSetCat(this,'cheque-cob','todos')" style="border-left:2px solid rgba(91,232,124,0.6)">Cheque cobrado</div>
+        <div class="filter-tab" onclick="rSetCat(this,'factoring','todos')" style="border-left:2px solid rgba(91,232,124,0.6)">Factoring</div>
+        <div class="filter-tab" onclick="rSetCat(this,'credito','todos')" style="border-left:2px solid rgba(91,232,124,0.6)">Crédito</div>
+        <div class="filter-tab" onclick="rSetCat(this,'factura','todos')" style="border-left:2px solid rgba(255,112,112,0.6)">Factura</div>
+        <div class="filter-tab" onclick="rSetCat(this,'boleta','todos')" style="border-left:2px solid rgba(255,112,112,0.6)">Boleta</div>
+        <div class="filter-tab" onclick="rSetCat(this,'sin-comp','todos')" style="border-left:2px solid rgba(255,112,112,0.6)">Sin comprobante</div>
+        <div class="filter-tab" onclick="rSetCat(this,'cheque-emi','todos')" style="border-left:2px solid rgba(255,112,112,0.6)">Cheque emitido</div>
+        <div class="filter-tab" onclick="rSetCat(this,'financiero','todos')" style="border-left:2px solid rgba(255,112,112,0.6)">Financiero</div>
+      </div>
+      <!-- leyenda -->
+      <div style="display:flex;gap:1rem;margin-top:0.4rem">
+        <span style="font-size:10px;color:rgba(91,232,124,0.8);display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:#5be87c;display:inline-block"></span>Ingresos</span>
+        <span style="font-size:10px;color:rgba(255,112,112,0.8);display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:#ff7070;display:inline-block"></span>Gastos</span>
+      </div>
+    </div>
+
+    <!-- NIVEL 2: cuando es INGRESOS -->
+    <div id="r-sec-ing" style="display:none;margin-top:0.5rem">
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.8px;color:rgba(91,232,124,0.75);font-weight:600;margin-bottom:0.4rem">Tipo de ingreso</div>
+      <div class="filter-tabs" id="r-chips-ing" style="flex-wrap:wrap;gap:0.35rem">
+        <div class="filter-tab active" onclick="rSetCat(this,'todos-ing','ingresos')">Todos</div>
+        <div class="filter-tab" onclick="rSetCat(this,'venta','ingresos')">Venta</div>
+        <div class="filter-tab" onclick="rSetCat(this,'cheque-cob','ingresos')">Cheque cobrado</div>
+        <div class="filter-tab" onclick="rSetCat(this,'factoring','ingresos')">Factoring</div>
+        <div class="filter-tab" onclick="rSetCat(this,'credito','ingresos')">Crédito recibido</div>
+      </div>
+    </div>
+
+    <!-- NIVEL 2: cuando es GASTOS -->
+    <div id="r-sec-gas" style="display:none;margin-top:0.5rem">
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.8px;color:rgba(255,112,112,0.75);font-weight:600;margin-bottom:0.4rem">Tipo de gasto</div>
+      <div class="filter-tabs" id="r-chips-gas" style="flex-wrap:wrap;gap:0.35rem">
+        <div class="filter-tab active" onclick="rSetCat(this,'todos-gas','gastos')">Todos</div>
+        <div class="filter-tab" onclick="rSetCat(this,'factura','gastos')">Factura</div>
+        <div class="filter-tab" onclick="rSetCat(this,'boleta','gastos')">Boleta</div>
+        <div class="filter-tab" onclick="rSetCat(this,'sin-comp','gastos')">Sin comprobante</div>
+        <div class="filter-tab" onclick="rSetCat(this,'cheque-emi','gastos')">Cheque emitido</div>
+        <div class="filter-tab" onclick="rSetCat(this,'financiero','gastos')">Financiero</div>
+      </div>
+    </div>
+
+    <!-- FECHAS -->
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0.85rem 1rem;margin-top:0.75rem;margin-bottom:0.75rem">
+      <div style="font-size:11px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:0.6rem">Rango de fechas</div>
+      <div class="form-row">
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Desde</label>
+          <input class="form-input" type="date" id="fecha-desde">
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Hasta</label>
+          <input class="form-input" type="date" id="fecha-hasta">
+        </div>
+      </div>
+      <button class="btn-save" style="width:100%;margin-top:0.65rem;border-radius:var(--radius-sm);font-size:13px" onclick="showToast('Filtro aplicado','success','check')">
+        Aplicar filtro de fechas
+      </button>
+    </div>
+
+    <!-- RESULTADO -->
+    <div class="section-header">
+      <span class="section-title" id="registros-titulo">Todos los movimientos</span>
+      <span id="registros-count" style="font-size:11px;color:var(--text-muted);background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:2px 10px">8 registros</span>
+    </div>
+
+    <div class="tx-list" id="registros-lista">
+
+      <div class="tx-item reg-item" data-tipo="ingresos" data-cat="venta">
+        <div class="tx-icon green"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <div class="tx-info">
+          <div class="tx-name">Olympic — Factura F001-2341</div>
+          <div class="tx-meta">Venta · 28/05/2026</div>
+        </div>
+        <div class="tx-amount pos">+$850.00</div>
+      </div>
+
+      <div class="tx-item reg-item" data-tipo="ingresos" data-cat="cheque-cob">
+        <div class="tx-icon blue"><svg class="icon" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+        <div class="tx-info">
+          <div class="tx-name">Cheque N° 00142 — BCP</div>
+          <div class="tx-meta">Cheque cobrado · 26/05/2026</div>
+        </div>
+        <div class="tx-amount pos">+$400.00</div>
+      </div>
+
+      <div class="tx-item reg-item" data-tipo="ingresos" data-cat="venta">
+        <div class="tx-icon green"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <div class="tx-info">
+          <div class="tx-name">Energía S.A. — Factura F001-2298</div>
+          <div class="tx-meta">Venta · 22/05/2026</div>
+        </div>
+        <div class="tx-amount pos">+S/. 1,200.00</div>
+      </div>
+
+      <div class="tx-item reg-item" data-tipo="ingresos" data-cat="factoring">
+        <div class="tx-icon amber"><svg class="icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+        <div class="tx-info">
+          <div class="tx-name">Factoring — Contrato FC-0034</div>
+          <div class="tx-meta">Factoring · 18/05/2026</div>
+        </div>
+        <div class="tx-amount pos">+$600.00</div>
+      </div>
+
+      <div class="tx-item reg-item" data-tipo="ingresos" data-cat="credito">
+        <div class="tx-icon blue"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <div class="tx-info">
+          <div class="tx-name">Crédito BBVA — CR-0012</div>
+          <div class="tx-meta">Crédito recibido · 15/05/2026</div>
+        </div>
+        <div class="tx-amount pos">+S/. 3,500.00</div>
+      </div>
+
+      <div class="tx-item reg-item" data-tipo="gastos" data-cat="factura">
+        <div class="tx-icon red"><svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="tx-info">
+          <div class="tx-name">Repuestos Talara S.A.C.</div>
+          <div class="tx-meta">Factura F002-0891 · 29/05/2026</div>
+        </div>
+        <div class="tx-amount neg">-$320.00</div>
+      </div>
+
+      <div class="tx-item reg-item" data-tipo="gastos" data-cat="sin-comp">
+        <div class="tx-icon amber"><svg class="icon" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+        <div class="tx-info">
+          <div class="tx-name">Combustible campo norte</div>
+          <div class="tx-meta">Sin comprobante · 28/05/2026</div>
+        </div>
+        <div class="tx-amount neg">-S/. 180.00</div>
+      </div>
+
+      <div class="tx-item reg-item" data-tipo="gastos" data-cat="cheque-emi">
+        <div class="tx-icon red"><svg class="icon" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+        <div class="tx-info">
+          <div class="tx-name">Cheque N° 00078 — Scotiabank</div>
+          <div class="tx-meta">Cheque emitido · 25/05/2026</div>
+        </div>
+        <div class="tx-amount neg">-$500.00</div>
+      </div>
+
+      <div class="tx-item reg-item" data-tipo="gastos" data-cat="financiero">
+        <div class="tx-icon red"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <div class="tx-info">
+          <div class="tx-name">Pago cuota BBVA — CR-0012</div>
+          <div class="tx-meta">Gasto financiero · 20/05/2026</div>
+        </div>
+        <div class="tx-amount neg">-S/. 450.00</div>
+      </div>
+
+    </div>
+
+    <div class="total-bar">
+      <span class="total-bar-label">REGISTROS ENCONTRADOS</span>
+      <span class="total-bar-value" id="registros-total-val">8 registros</span>
+    </div>
+
+    <!-- EXPORTAR -->
+    <div style="margin-top:0.75rem">
+      <div style="font-size:11px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:0.5rem">Formato de exportación</div>
+      <div class="tipo-selector" style="grid-template-columns:1fr 1fr 1fr;margin-bottom:0.75rem">
+        <div class="tipo-btn active" id="fmt-xlsx" onclick="selectFormato('xlsx')">XLSX</div>
+        <div class="tipo-btn" id="fmt-xml" onclick="selectFormato('xml')">XML</div>
+        <div class="tipo-btn" id="fmt-csv" onclick="selectFormato('csv')">CSV</div>
+      </div>
+      <button class="btn-save" style="width:100%;border-radius:var(--radius-sm)" onclick="exportarRegistros()">
+        Exportar
+      </button>
+    </div>
+
+  </div>
+  <nav class="bottom-nav">
+    <button class="nav-btn" onclick="goTo('home')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Inicio
+    </button>
+    <button class="nav-btn" onclick="goTo('ingresos')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 5 5 12"/></svg>
+      Ingresos
+    </button>
+    <button class="nav-btn" onclick="goTo('gastos')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 19 19 12"/></svg>
+      Gastos
+    </button>
+    <button class="nav-btn" onclick="goTo('cuentas')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Cuentas
+    </button>
+  </nav>
+</div>
 
   <!-- ── CUENTAS ── -->
   <div class="screen" id="screen-cuentas">
@@ -2092,10 +2171,88 @@
 </div>
  
 <script>
-  function setRegistroFiltro(el, tipo) {
+    // ── REPORTES: estado del filtro ──
+  let rTipo = 'todos';
+  let rCat  = 'todos-all';
+  
+  function rSetTipo(el, tipo) {
     el.closest('.filter-tabs').querySelectorAll('.filter-tab')
       .forEach(t => t.classList.remove('active'));
     el.classList.add('active');
+    rTipo = tipo;
+  
+    // mostrar el panel de subcategorías correcto
+    document.getElementById('r-sec-todos').style.display = tipo === 'todos'    ? '' : 'none';
+    document.getElementById('r-sec-ing').style.display   = tipo === 'ingresos' ? '' : 'none';
+    document.getElementById('r-sec-gas').style.display   = tipo === 'gastos'   ? '' : 'none';
+  
+    // resetear chips de subcategoría al "Todos" de cada panel
+    if (tipo === 'todos')    { rCat = 'todos-all'; rResetChips('r-chips-todos','todos-all'); }
+    if (tipo === 'ingresos') { rCat = 'todos-ing'; rResetChips('r-chips-ing','todos-ing'); }
+    if (tipo === 'gastos')   { rCat = 'todos-gas'; rResetChips('r-chips-gas','todos-gas'); }
+  
+    rAplicar();
+  }
+  
+  function rSetCat(el, cat, scope) {
+    const grupoId = scope === 'ingresos' ? 'r-chips-ing'
+                  : scope === 'gastos'   ? 'r-chips-gas'
+                  : 'r-chips-todos';
+    document.getElementById(grupoId).querySelectorAll('.filter-tab')
+      .forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    rCat = cat;
+    rAplicar();
+  }
+  
+  function rResetChips(grupoId, defaultCat) {
+    document.getElementById(grupoId).querySelectorAll('.filter-tab').forEach(t => {
+      t.classList.toggle('active', t.getAttribute('onclick').includes("'" + defaultCat + "'"));
+    });
+  }
+  
+  function rAplicar() {
+    const items = document.querySelectorAll('#registros-lista .reg-item');
+    let visibles = 0;
+  
+    items.forEach(item => {
+      const tipo = item.dataset.tipo; // 'ingresos' | 'gastos'
+      const cat  = item.dataset.cat;  // 'venta', 'factura', etc.
+      let mostrar = false;
+  
+      if (rTipo === 'todos') {
+        if (rCat === 'todos-all') mostrar = true;
+        else mostrar = (cat === rCat);
+  
+      } else if (rTipo === 'ingresos') {
+        if (tipo !== 'ingresos') { mostrar = false; }
+        else if (rCat === 'todos-ing') mostrar = true;
+        else mostrar = (cat === rCat);
+  
+      } else if (rTipo === 'gastos') {
+        if (tipo !== 'gastos') { mostrar = false; }
+        else if (rCat === 'todos-gas') mostrar = true;
+        else mostrar = (cat === rCat);
+      }
+  
+      item.style.display = mostrar ? 'flex' : 'none';
+      if (mostrar) visibles++;
+    });
+  
+    // título
+    const titulos = {
+      todos: 'Todos los movimientos',
+      ingresos: 'Historial de ingresos',
+      gastos: 'Historial de gastos'
+    };
+    document.getElementById('registros-titulo').textContent = titulos[rTipo];
+  
+    // contador
+    const txt = visibles + ' registro' + (visibles !== 1 ? 's' : '');
+    document.getElementById('registros-count').textContent = txt;
+    document.getElementById('registros-total-val').textContent = txt;
+  }
+
 
     const titulos = {
       todos: 'Todos los movimientos',
