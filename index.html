@@ -1141,7 +1141,7 @@
   </div>
   <div class="module-screen">
 
-    <!-- NIVEL 1 -->
+    <!-- NIVEL 1: Tipo principal -->
     <div style="margin-top:0.75rem">
       <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-muted);font-weight:600;margin-bottom:0.4rem">Tipo de movimiento</div>
       <div class="filter-tabs" style="flex-wrap:wrap">
@@ -1151,50 +1151,53 @@
       </div>
     </div>
 
-    <!-- NIVEL 2: cuando es TODOS -->
+    <!-- NIVEL 2: TODOS -->
     <div id="r-sec-todos" style="margin-top:0.5rem">
       <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-muted);font-weight:600;margin-bottom:0.4rem">Categoría</div>
       <div class="filter-tabs" id="r-chips-todos" style="flex-wrap:wrap;gap:0.35rem">
-        <div class="filter-tab active" onclick="rSetCat(this,'todos-all','todos')">Todas</div>
-        <div class="filter-tab" onclick="rSetCat(this,'venta','todos')" style="border-left:2px solid rgba(91,232,124,0.6)">Venta</div>
-        <div class="filter-tab" onclick="rSetCat(this,'cheque-cob','todos')" style="border-left:2px solid rgba(91,232,124,0.6)">Cheque cobrado</div>
-        <div class="filter-tab" onclick="rSetCat(this,'factoring','todos')" style="border-left:2px solid rgba(91,232,124,0.6)">Factoring</div>
-        <div class="filter-tab" onclick="rSetCat(this,'credito','todos')" style="border-left:2px solid rgba(91,232,124,0.6)">Crédito</div>
-        <div class="filter-tab" onclick="rSetCat(this,'factura','todos')" style="border-left:2px solid rgba(255,112,112,0.6)">Factura</div>
-        <div class="filter-tab" onclick="rSetCat(this,'boleta','todos')" style="border-left:2px solid rgba(255,112,112,0.6)">Boleta</div>
-        <div class="filter-tab" onclick="rSetCat(this,'sin-comp','todos')" style="border-left:2px solid rgba(255,112,112,0.6)">Sin comprobante</div>
-        <div class="filter-tab" onclick="rSetCat(this,'cheque-emi','todos')" style="border-left:2px solid rgba(255,112,112,0.6)">Cheque emitido</div>
-        <div class="filter-tab" onclick="rSetCat(this,'financiero','todos')" style="border-left:2px solid rgba(255,112,112,0.6)">Financiero</div>
+        <div class="filter-tab active" data-cat="todos-all" onclick="rToggleCat(this,'todos-all','todos')">Todas</div>
+        <div class="filter-tab" data-cat="venta" onclick="rToggleCat(this,'venta','todos')" style="border-left:2px solid rgba(91,232,124,0.6)">Venta</div>
+        <div class="filter-tab" data-cat="cheque-cob" onclick="rToggleCat(this,'cheque-cob','todos')" style="border-left:2px solid rgba(91,232,124,0.6)">Cheque cobrado</div>
+        <div class="filter-tab" data-cat="factoring" onclick="rToggleCat(this,'factoring','todos')" style="border-left:2px solid rgba(91,232,124,0.6)">Factoring</div>
+        <div class="filter-tab" data-cat="credito" onclick="rToggleCat(this,'credito','todos')" style="border-left:2px solid rgba(91,232,124,0.6)">Crédito</div>
+        <div class="filter-tab" data-cat="factura" onclick="rToggleCat(this,'factura','todos')" style="border-left:2px solid rgba(255,112,112,0.6)">Factura</div>
+        <div class="filter-tab" data-cat="boleta" onclick="rToggleCat(this,'boleta','todos')" style="border-left:2px solid rgba(255,112,112,0.6)">Boleta</div>
+        <div class="filter-tab" data-cat="sin-comp" onclick="rToggleCat(this,'sin-comp','todos')" style="border-left:2px solid rgba(255,112,112,0.6)">Sin comprobante</div>
+        <div class="filter-tab" data-cat="cheque-emi" onclick="rToggleCat(this,'cheque-emi','todos')" style="border-left:2px solid rgba(255,112,112,0.6)">Cheque emitido</div>
+        <div class="filter-tab" data-cat="financiero" onclick="rToggleCat(this,'financiero','todos')" style="border-left:2px solid rgba(255,112,112,0.6)">Financiero</div>
       </div>
-      <!-- leyenda -->
       <div style="display:flex;gap:1rem;margin-top:0.4rem">
-        <span style="font-size:10px;color:rgba(91,232,124,0.8);display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:#5be87c;display:inline-block"></span>Ingresos</span>
-        <span style="font-size:10px;color:rgba(255,112,112,0.8);display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:#ff7070;display:inline-block"></span>Gastos</span>
+        <span style="font-size:10px;color:rgba(91,232,124,0.8);display:flex;align-items:center;gap:4px">
+          <span style="width:8px;height:8px;border-radius:50%;background:#5be87c;display:inline-block"></span>Ingresos
+        </span>
+        <span style="font-size:10px;color:rgba(255,112,112,0.8);display:flex;align-items:center;gap:4px">
+          <span style="width:8px;height:8px;border-radius:50%;background:#ff7070;display:inline-block"></span>Gastos
+        </span>
       </div>
     </div>
 
-    <!-- NIVEL 2: cuando es INGRESOS -->
+    <!-- NIVEL 2: INGRESOS -->
     <div id="r-sec-ing" style="display:none;margin-top:0.5rem">
       <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.8px;color:rgba(91,232,124,0.75);font-weight:600;margin-bottom:0.4rem">Tipo de ingreso</div>
       <div class="filter-tabs" id="r-chips-ing" style="flex-wrap:wrap;gap:0.35rem">
-        <div class="filter-tab active" onclick="rSetCat(this,'todos-ing','ingresos')">Todos</div>
-        <div class="filter-tab" onclick="rSetCat(this,'venta','ingresos')">Venta</div>
-        <div class="filter-tab" onclick="rSetCat(this,'cheque-cob','ingresos')">Cheque cobrado</div>
-        <div class="filter-tab" onclick="rSetCat(this,'factoring','ingresos')">Factoring</div>
-        <div class="filter-tab" onclick="rSetCat(this,'credito','ingresos')">Crédito recibido</div>
+        <div class="filter-tab active" data-cat="todos-ing" onclick="rToggleCat(this,'todos-ing','ingresos')">Todos</div>
+        <div class="filter-tab" data-cat="venta" onclick="rToggleCat(this,'venta','ingresos')">Venta</div>
+        <div class="filter-tab" data-cat="cheque-cob" onclick="rToggleCat(this,'cheque-cob','ingresos')">Cheque cobrado</div>
+        <div class="filter-tab" data-cat="factoring" onclick="rToggleCat(this,'factoring','ingresos')">Factoring</div>
+        <div class="filter-tab" data-cat="credito" onclick="rToggleCat(this,'credito','ingresos')">Crédito recibido</div>
       </div>
     </div>
 
-    <!-- NIVEL 2: cuando es GASTOS -->
+    <!-- NIVEL 2: GASTOS -->
     <div id="r-sec-gas" style="display:none;margin-top:0.5rem">
       <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.8px;color:rgba(255,112,112,0.75);font-weight:600;margin-bottom:0.4rem">Tipo de gasto</div>
       <div class="filter-tabs" id="r-chips-gas" style="flex-wrap:wrap;gap:0.35rem">
-        <div class="filter-tab active" onclick="rSetCat(this,'todos-gas','gastos')">Todos</div>
-        <div class="filter-tab" onclick="rSetCat(this,'factura','gastos')">Factura</div>
-        <div class="filter-tab" onclick="rSetCat(this,'boleta','gastos')">Boleta</div>
-        <div class="filter-tab" onclick="rSetCat(this,'sin-comp','gastos')">Sin comprobante</div>
-        <div class="filter-tab" onclick="rSetCat(this,'cheque-emi','gastos')">Cheque emitido</div>
-        <div class="filter-tab" onclick="rSetCat(this,'financiero','gastos')">Financiero</div>
+        <div class="filter-tab active" data-cat="todos-gas" onclick="rToggleCat(this,'todos-gas','gastos')">Todos</div>
+        <div class="filter-tab" data-cat="factura" onclick="rToggleCat(this,'factura','gastos')">Factura</div>
+        <div class="filter-tab" data-cat="boleta" onclick="rToggleCat(this,'boleta','gastos')">Boleta</div>
+        <div class="filter-tab" data-cat="sin-comp" onclick="rToggleCat(this,'sin-comp','gastos')">Sin comprobante</div>
+        <div class="filter-tab" data-cat="cheque-emi" onclick="rToggleCat(this,'cheque-emi','gastos')">Cheque emitido</div>
+        <div class="filter-tab" data-cat="financiero" onclick="rToggleCat(this,'financiero','gastos')">Financiero</div>
       </div>
     </div>
 
@@ -1219,12 +1222,11 @@
     <!-- RESULTADO -->
     <div class="section-header">
       <span class="section-title" id="registros-titulo">Todos los movimientos</span>
-      <span id="registros-count" style="font-size:11px;color:var(--text-muted);background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:2px 10px">8 registros</span>
     </div>
 
     <div class="tx-list" id="registros-lista">
 
-      <div class="tx-item reg-item" data-tipo="ingresos" data-cat="venta">
+      <div class="tx-item reg-item" data-tipo="ingresos" data-cat="venta" data-monto="850">
         <div class="tx-icon green"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
         <div class="tx-info">
           <div class="tx-name">Olympic — Factura F001-2341</div>
@@ -1233,7 +1235,7 @@
         <div class="tx-amount pos">+$850.00</div>
       </div>
 
-      <div class="tx-item reg-item" data-tipo="ingresos" data-cat="cheque-cob">
+      <div class="tx-item reg-item" data-tipo="ingresos" data-cat="cheque-cob" data-monto="400">
         <div class="tx-icon blue"><svg class="icon" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
         <div class="tx-info">
           <div class="tx-name">Cheque N° 00142 — BCP</div>
@@ -1242,7 +1244,7 @@
         <div class="tx-amount pos">+$400.00</div>
       </div>
 
-      <div class="tx-item reg-item" data-tipo="ingresos" data-cat="venta">
+      <div class="tx-item reg-item" data-tipo="ingresos" data-cat="venta" data-monto="1200">
         <div class="tx-icon green"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
         <div class="tx-info">
           <div class="tx-name">Energía S.A. — Factura F001-2298</div>
@@ -1251,7 +1253,7 @@
         <div class="tx-amount pos">+S/. 1,200.00</div>
       </div>
 
-      <div class="tx-item reg-item" data-tipo="ingresos" data-cat="factoring">
+      <div class="tx-item reg-item" data-tipo="ingresos" data-cat="factoring" data-monto="600">
         <div class="tx-icon amber"><svg class="icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
         <div class="tx-info">
           <div class="tx-name">Factoring — Contrato FC-0034</div>
@@ -1260,7 +1262,7 @@
         <div class="tx-amount pos">+$600.00</div>
       </div>
 
-      <div class="tx-item reg-item" data-tipo="ingresos" data-cat="credito">
+      <div class="tx-item reg-item" data-tipo="ingresos" data-cat="credito" data-monto="3500">
         <div class="tx-icon blue"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
         <div class="tx-info">
           <div class="tx-name">Crédito BBVA — CR-0012</div>
@@ -1269,7 +1271,7 @@
         <div class="tx-amount pos">+S/. 3,500.00</div>
       </div>
 
-      <div class="tx-item reg-item" data-tipo="gastos" data-cat="factura">
+      <div class="tx-item reg-item" data-tipo="gastos" data-cat="factura" data-monto="320">
         <div class="tx-icon red"><svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
         <div class="tx-info">
           <div class="tx-name">Repuestos Talara S.A.C.</div>
@@ -1278,7 +1280,7 @@
         <div class="tx-amount neg">-$320.00</div>
       </div>
 
-      <div class="tx-item reg-item" data-tipo="gastos" data-cat="sin-comp">
+      <div class="tx-item reg-item" data-tipo="gastos" data-cat="sin-comp" data-monto="180">
         <div class="tx-icon amber"><svg class="icon" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
         <div class="tx-info">
           <div class="tx-name">Combustible campo norte</div>
@@ -1287,7 +1289,7 @@
         <div class="tx-amount neg">-S/. 180.00</div>
       </div>
 
-      <div class="tx-item reg-item" data-tipo="gastos" data-cat="cheque-emi">
+      <div class="tx-item reg-item" data-tipo="gastos" data-cat="cheque-emi" data-monto="500">
         <div class="tx-icon red"><svg class="icon" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
         <div class="tx-info">
           <div class="tx-name">Cheque N° 00078 — Scotiabank</div>
@@ -1296,7 +1298,7 @@
         <div class="tx-amount neg">-$500.00</div>
       </div>
 
-      <div class="tx-item reg-item" data-tipo="gastos" data-cat="financiero">
+      <div class="tx-item reg-item" data-tipo="gastos" data-cat="financiero" data-monto="450">
         <div class="tx-icon red"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
         <div class="tx-info">
           <div class="tx-name">Pago cuota BBVA — CR-0012</div>
@@ -1307,9 +1309,22 @@
 
     </div>
 
-    <div class="total-bar">
-      <span class="total-bar-label">REGISTROS ENCONTRADOS</span>
-      <span class="total-bar-value" id="registros-total-val">8 registros</span>
+    <!-- TOTALES FINANCIEROS -->
+    <div style="background:rgba(255,255,255,0.08);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0.75rem 1rem;margin-top:0.75rem">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;text-align:center">
+        <div>
+          <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.6px;font-weight:600;margin-bottom:0.25rem">Ingresos</div>
+          <div id="r-total-ing" style="font-family:'DM Mono',monospace;font-size:13px;font-weight:700;color:#5be87c">$0.00</div>
+        </div>
+        <div style="border-left:1px solid var(--border);border-right:1px solid var(--border)">
+          <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.6px;font-weight:600;margin-bottom:0.25rem">Egresos</div>
+          <div id="r-total-gas" style="font-family:'DM Mono',monospace;font-size:13px;font-weight:700;color:#ff7070">$0.00</div>
+        </div>
+        <div>
+          <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.6px;font-weight:600;margin-bottom:0.25rem">Flujo neto</div>
+          <div id="r-total-neto" style="font-family:'DM Mono',monospace;font-size:13px;font-weight:700;color:#fff">$0.00</div>
+        </div>
+      </div>
     </div>
 
     <!-- EXPORTAR -->
@@ -2172,8 +2187,9 @@
  
 <script>
 // ── REPORTES ──
+// ── REPORTES: selección múltiple ──
 let rTipo = 'todos';
-let rCat  = 'todos-all';
+let rCatsActivas = new Set(['todos-all']);
 
 function rSetTipo(el, tipo) {
   el.closest('.filter-tabs').querySelectorAll('.filter-tab')
@@ -2185,64 +2201,90 @@ function rSetTipo(el, tipo) {
   document.getElementById('r-sec-ing').style.display   = tipo === 'ingresos' ? '' : 'none';
   document.getElementById('r-sec-gas').style.display   = tipo === 'gastos'   ? '' : 'none';
 
-  if (tipo === 'todos')    { rCat = 'todos-all'; rResetChips('r-chips-todos', 'todos-all'); }
-  if (tipo === 'ingresos') { rCat = 'todos-ing'; rResetChips('r-chips-ing',   'todos-ing'); }
-  if (tipo === 'gastos')   { rCat = 'todos-gas'; rResetChips('r-chips-gas',   'todos-gas'); }
+  if (tipo === 'todos')    { rCatsActivas = new Set(['todos-all']); rResetChips('r-chips-todos','todos-all'); }
+  if (tipo === 'ingresos') { rCatsActivas = new Set(['todos-ing']); rResetChips('r-chips-ing',  'todos-ing'); }
+  if (tipo === 'gastos')   { rCatsActivas = new Set(['todos-gas']); rResetChips('r-chips-gas',  'todos-gas'); }
 
   rAplicar();
 }
 
-function rSetCat(el, cat, scope) {
+function rToggleCat(el, cat, scope) {
+  const esTodos = cat === 'todos-all' || cat === 'todos-ing' || cat === 'todos-gas';
   const grupoId = scope === 'ingresos' ? 'r-chips-ing'
                 : scope === 'gastos'   ? 'r-chips-gas'
                 : 'r-chips-todos';
-  document.getElementById(grupoId).querySelectorAll('.filter-tab')
-    .forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  rCat = cat;
+  const catTodos = scope === 'ingresos' ? 'todos-ing'
+                 : scope === 'gastos'   ? 'todos-gas'
+                 : 'todos-all';
+  const grupo = document.getElementById(grupoId);
+  const todosChip = grupo.querySelector('[data-cat="' + catTodos + '"]');
+
+  if (esTodos) {
+    rCatsActivas = new Set([cat]);
+    grupo.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+  } else {
+    rCatsActivas.delete(catTodos);
+    if (todosChip) todosChip.classList.remove('active');
+
+    if (rCatsActivas.has(cat)) {
+      rCatsActivas.delete(cat);
+      el.classList.remove('active');
+      if (rCatsActivas.size === 0) {
+        rCatsActivas.add(catTodos);
+        if (todosChip) todosChip.classList.add('active');
+      }
+    } else {
+      rCatsActivas.add(cat);
+      el.classList.add('active');
+    }
+  }
   rAplicar();
 }
 
 function rResetChips(grupoId, defaultCat) {
   document.getElementById(grupoId).querySelectorAll('.filter-tab').forEach(t => {
-    const onclick = t.getAttribute('onclick') || '';
-    t.classList.toggle('active', onclick.includes("'" + defaultCat + "'"));
+    t.classList.toggle('active', t.dataset.cat === defaultCat);
   });
 }
 
 function rAplicar() {
   const items = document.querySelectorAll('#registros-lista .reg-item');
-  let visibles = 0;
+  let totalIng = 0, totalGas = 0;
 
   items.forEach(item => {
-    const tipo = item.dataset.tipo;
-    const cat  = item.dataset.cat;
+    const tipo  = item.dataset.tipo;
+    const cat   = item.dataset.cat;
+    const monto = parseFloat(item.dataset.monto) || 0;
     let mostrar = false;
 
     if (rTipo === 'todos') {
-      mostrar = (rCat === 'todos-all') ? true : (cat === rCat);
+      mostrar = rCatsActivas.has('todos-all') || rCatsActivas.has(cat);
     } else if (rTipo === 'ingresos') {
-      mostrar = tipo === 'ingresos' && (rCat === 'todos-ing' || cat === rCat);
+      if (tipo !== 'ingresos') { item.style.display = 'none'; return; }
+      mostrar = rCatsActivas.has('todos-ing') || rCatsActivas.has(cat);
     } else if (rTipo === 'gastos') {
-      mostrar = tipo === 'gastos'   && (rCat === 'todos-gas' || cat === rCat);
+      if (tipo !== 'gastos') { item.style.display = 'none'; return; }
+      mostrar = rCatsActivas.has('todos-gas') || rCatsActivas.has(cat);
     }
 
     item.style.display = mostrar ? 'flex' : 'none';
-    if (mostrar) visibles++;
+    if (mostrar) {
+      if (tipo === 'ingresos') totalIng += monto;
+      if (tipo === 'gastos')   totalGas += monto;
+    }
   });
 
-  const titulosR = {
-    todos: 'Todos los movimientos',
-    ingresos: 'Historial de ingresos',
-    gastos: 'Historial de gastos'
-  };
+  const titulosR = { todos:'Todos los movimientos', ingresos:'Historial de ingresos', gastos:'Historial de gastos' };
   document.getElementById('registros-titulo').textContent = titulosR[rTipo];
 
-  const txt = visibles + ' registro' + (visibles !== 1 ? 's' : '');
-  document.getElementById('registros-count').textContent = txt;
-  document.getElementById('registros-total-val').textContent = txt;
+  const neto = totalIng - totalGas;
+  const fmt = n => '$' + n.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+  document.getElementById('r-total-ing').textContent  = fmt(totalIng);
+  document.getElementById('r-total-gas').textContent  = fmt(totalGas);
+  document.getElementById('r-total-neto').textContent = (neto >= 0 ? '+' : '-') + fmt(Math.abs(neto));
+  document.getElementById('r-total-neto').style.color = neto >= 0 ? '#5be87c' : '#ff7070';
 }
-
 // ── NAVEGACIÓN ──
 function goTo(screenId) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
