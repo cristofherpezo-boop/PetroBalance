@@ -945,8 +945,8 @@
     </nav>
   </div>
  
-  <!-- ── INGRESOS ── -->
- <div class="screen" id="screen-ingresos">
+   <!-- ── INGRESOS ── -->
+  <div class="screen" id="screen-ingresos">
     <div class="topbar">
       <button class="back-btn" onclick="goTo('home')">
         <svg class="icon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
@@ -971,6 +971,7 @@
         <div class="filter-tab" onclick="setFilter(this)">Crédito</div>
       </div>
       <div class="tx-list">
+  
         <div class="tx-item">
           <div class="tx-icon green"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
           <div class="tx-info">
@@ -978,7 +979,11 @@
             <div class="tx-meta">Venta · 28/05/2026</div>
           </div>
           <div class="tx-amount pos">+$850.00</div>
+          <button onclick="editarRegistro(this,'ingresos')" style="background:rgba(255,255,255,0.08);border:1px solid var(--border);border-radius:7px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-muted);flex-shrink:0;margin-left:4px" title="Editar">
+            <svg style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
         </div>
+  
         <div class="tx-item">
           <div class="tx-icon blue"><svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
           <div class="tx-info">
@@ -986,7 +991,11 @@
             <div class="tx-meta">Cheque cobrado · 26/05/2026</div>
           </div>
           <div class="tx-amount pos">+$400.00</div>
+          <button onclick="editarRegistro(this,'ingresos')" style="background:rgba(255,255,255,0.08);border:1px solid var(--border);border-radius:7px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-muted);flex-shrink:0;margin-left:4px" title="Editar">
+            <svg style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
         </div>
+  
         <div class="tx-item">
           <div class="tx-icon green"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
           <div class="tx-info">
@@ -994,7 +1003,11 @@
             <div class="tx-meta">Venta · 22/05/2026</div>
           </div>
           <div class="tx-amount pos">+S/. 1,200.00</div>
+          <button onclick="editarRegistro(this,'ingresos')" style="background:rgba(255,255,255,0.08);border:1px solid var(--border);border-radius:7px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-muted);flex-shrink:0;margin-left:4px" title="Editar">
+            <svg style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
         </div>
+  
         <div class="tx-item">
           <div class="tx-icon amber"><svg class="icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
           <div class="tx-info">
@@ -1002,7 +1015,11 @@
             <div class="tx-meta">Factoring · 18/05/2026</div>
           </div>
           <div class="tx-amount pos">+$600.00</div>
+          <button onclick="editarRegistro(this,'ingresos')" style="background:rgba(255,255,255,0.08);border:1px solid var(--border);border-radius:7px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-muted);flex-shrink:0;margin-left:4px" title="Editar">
+            <svg style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
         </div>
+  
         <div class="tx-item">
           <div class="tx-icon blue"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
           <div class="tx-info">
@@ -1010,7 +1027,11 @@
             <div class="tx-meta">Crédito recibido · 15/05/2026</div>
           </div>
           <div class="tx-amount pos">+S/. 3,500.00</div>
+          <button onclick="editarRegistro(this,'ingresos')" style="background:rgba(255,255,255,0.08);border:1px solid var(--border);border-radius:7px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-muted);flex-shrink:0;margin-left:4px" title="Editar">
+            <svg style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
         </div>
+  
       </div>
       <div class="total-bar">
         <span class="total-bar-label">TOTAL INGRESOS</span>
@@ -1063,6 +1084,7 @@
         <div class="filter-tab" onclick="setFilter(this)">Gasto financiero</div>
       </div>
       <div class="tx-list">
+  
         <div class="tx-item">
           <div class="tx-icon red"><svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
           <div class="tx-info">
@@ -1070,7 +1092,11 @@
             <div class="tx-meta">Factura F002-0891 · Materiales · 29/05/2026</div>
           </div>
           <div class="tx-amount neg">-$320.00</div>
+          <button onclick="editarRegistro(this,'gastos')" style="background:rgba(255,255,255,0.08);border:1px solid var(--border);border-radius:7px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-muted);flex-shrink:0;margin-left:4px" title="Editar">
+            <svg style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
         </div>
+  
         <div class="tx-item">
           <div class="tx-icon amber"><svg class="icon" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
           <div class="tx-info">
@@ -1078,7 +1104,11 @@
             <div class="tx-meta">Sin comprobante · Transporte · 28/05/2026</div>
           </div>
           <div class="tx-amount neg">-S/. 180.00</div>
+          <button onclick="editarRegistro(this,'gastos')" style="background:rgba(255,255,255,0.08);border:1px solid var(--border);border-radius:7px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-muted);flex-shrink:0;margin-left:4px" title="Editar">
+            <svg style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
         </div>
+  
         <div class="tx-item">
           <div class="tx-icon red"><svg class="icon" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
           <div class="tx-info">
@@ -1086,7 +1116,11 @@
             <div class="tx-meta">Cheque emitido · 25/05/2026</div>
           </div>
           <div class="tx-amount neg">-$500.00</div>
+          <button onclick="editarRegistro(this,'gastos')" style="background:rgba(255,255,255,0.08);border:1px solid var(--border);border-radius:7px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-muted);flex-shrink:0;margin-left:4px" title="Editar">
+            <svg style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
         </div>
+  
         <div class="tx-item">
           <div class="tx-icon red"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
           <div class="tx-info">
@@ -1094,7 +1128,11 @@
             <div class="tx-meta">Gasto financiero · 20/05/2026</div>
           </div>
           <div class="tx-amount neg">-S/. 450.00</div>
+          <button onclick="editarRegistro(this,'gastos')" style="background:rgba(255,255,255,0.08);border:1px solid var(--border);border-radius:7px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-muted);flex-shrink:0;margin-left:4px" title="Editar">
+            <svg style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
         </div>
+  
         <div class="tx-item">
           <div class="tx-icon red"><svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
           <div class="tx-info">
@@ -1102,7 +1140,11 @@
             <div class="tx-meta">Boleta B001-3421 · Operaciones · 15/05/2026</div>
           </div>
           <div class="tx-amount neg">-S/. 89.50</div>
+          <button onclick="editarRegistro(this,'gastos')" style="background:rgba(255,255,255,0.08);border:1px solid var(--border);border-radius:7px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-muted);flex-shrink:0;margin-left:4px" title="Editar">
+            <svg style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
         </div>
+  
       </div>
       <div class="total-bar">
         <span class="total-bar-label">TOTAL EGRESOS</span>
@@ -1128,7 +1170,6 @@
       </button>
     </nav>
   </div>
-
 <!-- ── REGISTROS ── -->
 <div class="screen" id="screen-registros">
   <div class="topbar">
@@ -2525,6 +2566,19 @@ function selectFormato(fmt) {
 
 function exportarRegistros() {
   showToast('Exportando ' + formatoSeleccionado.toUpperCase() + '...', 'success', 'file');
+}
+function editarRegistro(btn, tipoForzado) {
+  const item = btn.closest('.tx-item');
+  const nombre = item ? item.querySelector('.tx-name').textContent : '';
+  const tipo = tipoForzado || 'ingresos';
+  if (tipo === 'ingresos') {
+    document.querySelector('#modalIngreso .modal-title').textContent = 'Editar ingreso';
+    openModal('modalIngreso');
+  } else {
+    document.querySelector('#modalGasto .modal-title').textContent = 'Editar gasto';
+    openModal('modalGasto');
+  }
+  showToast('Editando: ' + nombre, 'warning', 'edit');
 }
 </script>
 </body>
